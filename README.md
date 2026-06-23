@@ -266,6 +266,6 @@ Este proyecto está bajo la licencia **MIT**.
 
 ## 👤 Autor
 
-**Tu Nombre** — [LinkedIn](https://linkedin.com/in/tu-perfil) — [GitHub](https://github.com/Ivifer1)
+**Ivifer Pita** — [LinkedIn](https://www.linkedin.com/in/ivifer-pita-322527380/) — [GitHub](https://github.com/Ivifer1)
 
 > ¿Preguntas o sugerencias? Abre un [Issue](https://github.com/Ivifer1/ecommerce-data-pipeline/issues).
