@@ -1,0 +1,131 @@
+version: '3.8'
+
+services:
+  # PostgreSQL - Base de datos
+  postgres:
+    image: postgres:15
+    container_name: ecommerce_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - ecommerce_network
+
+  # Apache Airflow - PostgreSQL (metadatos)
+  airflow_postgres:
+    image: postgres:15
+    container_name: airflow_postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - airflow_postgres_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce_network
+
+  # Apache Airflow - Inicialización
+  airflow_init:
+    image: apache/airflow:2.7.3
+    container_name: airflow_init
+    depends_on:
+      - airflow_postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres:5432/airflow
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./data:/opt/airflow/data
+    command: >
+      bash -c "
+        airflow db init &&
+        airflow users create
+          --username admin
+          --firstname Admin
+          --lastname User
+          --role Admin
+          --email admin@example.com
+          --password admin
+      "
+    networks:
+      - ecommerce_network
+
+  # Apache Airflow - Webserver
+  airflow_webserver:
+    image: apache/airflow:2.7.3
+    container_name: airflow_webserver
+    depends_on:
+      - airflow_init
+      - airflow_postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres:5432/airflow
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./data:/opt/airflow/data
+    ports:
+      - "8080:8080"
+    command: webserver
+    networks:
+      - ecommerce_network
+
+  # Apache Airflow - Scheduler
+  airflow_scheduler:
+    image: apache/airflow:2.7.3
+    container_name: airflow_scheduler
+    depends_on:
+      - airflow_init
+      - airflow_postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres:5432/airflow
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./data:/opt/airflow/data
+    command: scheduler
+    networks:
+      - ecommerce_network
+
+  # Metabase - Dashboard
+  metabase:
+    image: metabase/metabase:latest
+    container_name: ecommerce_metabase
+    ports:
+      - "3000:3000"
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: ecommerce
+      MB_DB_PORT: 5432
+      MB_DB_USER: admin
+      MB_DB_PASS: admin123
+      MB_DB_HOST: postgres
+    depends_on:
+      - postgres
+    networks:
+      - ecommerce_network
+
+volumes:
+  postgres_data:
+  airflow_postgres_data:
+
+networks:
+  ecommerce_network:
+    driver: bridge
