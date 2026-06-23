@@ -23,7 +23,7 @@ API_ENDPOINTS = {
 # ─── Base de datos PostgreSQL ───
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "localhost"),
-    "port": os.getenv("DB_PORT", "5433"),  # ← Puerto externo de Docker
+    "port": os.getenv("DB_PORT", "5433"),  # Puerto externo de Docker
     "database": os.getenv("DB_NAME", "ecommerce"),
     "user": os.getenv("DB_USER", "admin"),
     "password": os.getenv("DB_PASSWORD", "admin123"),
@@ -34,10 +34,10 @@ DB_CONNECTION_STRING = (
     f"@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
 )
 
-# ─── Base de datos PostgreSQL (desde dentro de Docker / Airflow) ───
+# ─── Base de datos PostgreSQL (desde dentro de Docker) ───
 DB_CONFIG_DOCKER = {
     "host": "postgres",
-    "port": "5432",  # ← Puerto interno de Docker (no cambia)
+    "port": "5432",  # Puerto interno de Docker 
     "database": "ecommerce",
     "user": "admin",
     "password": "admin123",

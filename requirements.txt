@@ -1,0 +1,20 @@
+# === Extracción ===
+requests==2.31.0
+
+# === Transformación ===
+pandas==2.1.4
+numpy==1.26.2
+
+# === Carga ===
+SQLAlchemy==2.0.23
+psycopg2-binary==2.9.9
+
+# === Orquestación (Airflow) ===
+apache-airflow==2.7.3
+
+# === Tests ===
+pytest==7.4.3
+pytest-mock==3.12.0
+
+# === Utilidades ===
+python-dotenv==1.0.0
