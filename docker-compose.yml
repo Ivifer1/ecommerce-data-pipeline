@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  # PostgreSQL - Base de datos
+  # PostgreSQL - Base de datos principal
   postgres:
     image: postgres:15
     container_name: ecommerce_postgres
@@ -10,14 +8,14 @@ services:
       POSTGRES_PASSWORD: admin123
       POSTGRES_DB: ecommerce
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     networks:
       - ecommerce_network
 
-  # Apache Airflow - PostgreSQL (metadatos)
+  # PostgreSQL para metadatos de Airflow
   airflow_postgres:
     image: postgres:15
     container_name: airflow_postgres
@@ -30,7 +28,7 @@ services:
     networks:
       - ecommerce_network
 
-  # Apache Airflow - Inicialización
+  # Inicialización de Airflow (corre una vez y sale)
   airflow_init:
     image: apache/airflow:2.7.3
     container_name: airflow_init
@@ -46,21 +44,12 @@ services:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
       - ./data:/opt/airflow/data
-    command: >
-      bash -c "
-        airflow db init &&
-        airflow users create
-          --username admin
-          --firstname Admin
-          --lastname User
-          --role Admin
-          --email admin@example.com
-          --password admin
-      "
+    entrypoint: /bin/bash
+    command: -c "airflow db migrate && airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin"
     networks:
       - ecommerce_network
 
-  # Apache Airflow - Webserver
+  # Airflow Webserver
   airflow_webserver:
     image: apache/airflow:2.7.3
     container_name: airflow_webserver
@@ -83,7 +72,7 @@ services:
     networks:
       - ecommerce_network
 
-  # Apache Airflow - Scheduler
+  # Airflow Scheduler
   airflow_scheduler:
     image: apache/airflow:2.7.3
     container_name: airflow_scheduler
