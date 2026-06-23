@@ -10,15 +10,16 @@
 ---
 
 ## 📋 Arquitectura del Proyecto
+
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Fake      │────▶│   Python    │────▶│  PostgreSQL │────▶│   Metabase  │
-│   Store API │     │   (Pandas)  │     │   (Raw+Mart)│     │  (Dashboard) │
+│  Fake Store │────▶│   Python    │────▶│  PostgreSQL │────▶│  Metabase   │
+│    API      │     │  (Pandas)   │     │  (Raw+Mart) │     │ (Dashboard) │
 └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
 │
 ┌──────┴──────┐
-│ Apache Airflow│
-│  (Orquesta)   │
-└───────────────┘
+│Apache Airflow│
+│ (Orquesta)   │
+└──────────────┘
 
 
 ---
@@ -39,11 +40,51 @@
 ## Cómo ejecutar el proyecto
 
 ### Prerrequisitos
-- Docker Desktop
-- Python 3.9+
-- Git
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado
+- [Git](https://git-scm.com/) instalado
+- Python 3.9+ (solo para desarrollo local)
 
-### 1. Clonar el repositorio
+### Paso 1: Clonar el repositorio
 ```bash
 git clone https://github.com/TU_USUARIO/ecommerce-data-pipeline.git
 cd ecommerce-data-pipeline
+
+Paso 2: Levantar los servicios con Docker
+
+bash
+docker-compose up -d
+
+Esto creará y ejecutará:
+PostgreSQL (base de datos)
+Apache Airflow (webserver + scheduler)
+Metabase (dashboard)
+
+Paso 3: Verificar que los contenedores estén corriendo
+bash
+docker ps
+
+Deberías ver 5 contenedores activos: ecommerce_postgres, airflow_postgres, airflow_webserver, airflow_scheduler y ecommerce_metabase.
+
+Paso 4: Acceder a Apache Airflow
+Abre tu navegador: http://localhost:8080
+Usuario: admin
+Contraseña: admin
+
+Paso 5: Activar el DAG
+En la interfaz de Airflow, busca el DAG llamado ecommerce_pipeline
+Actívalo con el switch a la izquierda
+Ejecútalo manualmente con el botón ▶️ (Play)
+
+Paso 6: Verificar los datos en PostgreSQL
+bash
+docker exec -it ecommerce_postgres psql -U admin -d ecommerce -c "SELECT * FROM products LIMIT 5;"
+
+Paso 7: Acceder al Dashboard (Metabase)
+Abre tu navegador: http://localhost:3000
+Completa el registro inicial
+Conecta la base de datos PostgreSQL:
+Host: postgres
+Puerto: 5432
+Base de datos: ecommerce
+Usuario: admin
+Contraseña: admin123
