@@ -245,10 +245,10 @@ docker-compose down -v
 
 - [x] Estructura inicial del proyecto
 - [x] Docker Compose con PostgreSQL, Airflow y Metabase
-- [ ] Script de extracción (`extract.py`)
-- [ ] Script de transformación (`transform.py`)
-- [ ] Script de carga (`load.py`)
-- [ ] Esquema SQL (`schema.sql`)
+- [x] Script de extracción (`extract.py`)
+- [x] Script de transformación (`transform.py`)
+- [x] Script de carga (`load.py`)
+- [x] Esquema SQL (`schema.sql`)
 - [ ] DAG de Airflow (`ecommerce_pipeline.py`)
 - [ ] Tests unitarios
 - [ ] Dashboard en Metabase

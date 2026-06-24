@@ -8,7 +8,10 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from typing import List
 
-from config import DB_CONNECTION_STRING
+try:
+    from config import DB_CONNECTION_STRING
+except ImportError:
+    from scripts.config import DB_CONNECTION_STRING
 
 
 def get_engine():

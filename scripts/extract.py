@@ -9,7 +9,10 @@ import requests
 from pathlib import Path
 from typing import List, Dict, Union
 
-from config import API_BASE_URL, API_ENDPOINTS, DATA_RAW_DIR
+try:
+    from config import API_BASE_URL, API_ENDPOINTS, DATA_RAW_DIR
+except ImportError:
+    from scripts.config import API_BASE_URL, API_ENDPOINTS, DATA_RAW_DIR
 
 
 def fetch_data(endpoint: str) -> Union[List, Dict]:

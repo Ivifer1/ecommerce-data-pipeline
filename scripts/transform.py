@@ -10,7 +10,10 @@ import pandas as pd
 from pathlib import Path
 from typing import List, Dict
 
-from config import DATA_RAW_DIR, DATA_PROCESSED_DIR
+try:
+    from config import DATA_RAW_DIR, DATA_PROCESSED_DIR
+except ImportError:
+    from scripts.config import DATA_RAW_DIR, DATA_PROCESSED_DIR
 
 
 def load_raw(filename: str) -> List[Dict]:
