@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Data Pipeline
+# E-Commerce Data Pipeline
 
 > Pipeline ETL end-to-end: extracción de API REST, transformación con Pandas, carga a PostgreSQL y orquestación con Apache Airflow en Docker. Incluye dashboard de visualización.
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Arquitectura](#-arquitectura-del-proyecto)
 - [Estructura](#-estructura-del-proyecto)
@@ -23,7 +23,7 @@
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
@@ -47,7 +47,7 @@
 
 ---
 
-## 🗂️ Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 ecommerce-data-pipeline/
@@ -89,7 +89,7 @@ ecommerce-data-pipeline/
 
 ---
 
-## ⚙️ Prerrequisitos
+## Prerrequisitos
 
 Antes de comenzar, asegúrate de tener instalado:
 
@@ -103,7 +103,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 🚀 Instalación y Ejecución
+## Instalación y Ejecución
 
 ### Paso 1 — Clonar el repositorio
 
@@ -182,7 +182,7 @@ Si el pipeline funcionó correctamente, verás el conteo de registros cargados.
 
 ---
 
-## 📊 Uso
+## Uso
 
 ### Ejecutar el pipeline manualmente (sin Airflow)
 
@@ -223,7 +223,7 @@ docker-compose down -v
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 | Tecnología | Versión | Propósito |
 |------------|---------|-----------|
@@ -241,7 +241,7 @@ docker-compose down -v
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [x] Estructura inicial del proyecto
 - [x] Docker Compose con PostgreSQL, Airflow y Metabase
@@ -256,7 +256,7 @@ docker-compose down -v
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la licencia **MIT**.
 
@@ -264,7 +264,7 @@ Este proyecto está bajo la licencia **MIT**.
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Ivifer Pita** — [LinkedIn](https://www.linkedin.com/in/ivifer-pita-322527380/) — [GitHub](https://github.com/Ivifer1)
 
