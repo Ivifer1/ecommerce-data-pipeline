@@ -12,15 +12,15 @@
 
 ## Tabla de Contenidos
 
-- [Arquitectura](#-arquitectura-del-proyecto)
-- [Estructura](#-estructura-del-proyecto)
-- [Prerrequisitos](#-prerrequisitos)
-- [Instalación y Ejecución](#-instalación-y-ejecución)
-- [Uso](#-uso)
-- [Dashboard](#-dashboard)
-- [Tecnologías](#-tecnologías-utilizadas)
-- [Roadmap](#-roadmap)
-- [Licencia](#-licencia)
+- [Arquitectura](#arquitectura-del-proyecto)
+- [Estructura](#estructura-del-proyecto)
+- [Prerrequisitos](#prerrequisitos)
+- [Instalación y Ejecución](#instalación-y-ejecución)
+- [Uso](#uso)
+- [Dashboard](#dashboard)
+- [Tecnologías](#tecnologías-utilizadas)
+- [Roadmap](#roadmap)
+- [Licencia](#licencia)
 
 ---
 
@@ -264,7 +264,7 @@ Acceso: http://localhost:3000
 - [x] DAG de Airflow (`ecommerce_pipeline.py`)
 - [x] Tests unitarios
 - [x] Dashboard en Metabase
-- [ ] Documentación de arquitectura
+- [x] Documentación de arquitectura
 
 ---
 
