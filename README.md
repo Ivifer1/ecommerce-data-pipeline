@@ -17,6 +17,7 @@
 - [Prerrequisitos](#-prerrequisitos)
 - [Instalación y Ejecución](#-instalación-y-ejecución)
 - [Uso](#-uso)
+- [Dashboard](#-dashboard)
 - [Tecnologías](#-tecnologías-utilizadas)
 - [Roadmap](#-roadmap)
 - [Licencia](#-licencia)
@@ -223,6 +224,17 @@ docker-compose down -v
 
 ---
 
+## Dashboard
+
+![Dashboard E-Commerce Overview](images/dashboard_overview.png)
+
+El dashboard incluye:
+- **Distribución de ratings**: Gráfico circular que muestra la distribución de calificaciones de los productos
+- **Precio promedio por categoría**: Comparación de precios entre las 4 categorías
+- **Productos por categoría**: Cantidad de productos disponibles en cada categoría
+
+Acceso: http://localhost:3000
+
 ## Tecnologías Utilizadas
 
 | Tecnología | Versión | Propósito |
@@ -249,9 +261,9 @@ docker-compose down -v
 - [x] Script de transformación (`transform.py`)
 - [x] Script de carga (`load.py`)
 - [x] Esquema SQL (`schema.sql`)
-- [ ] DAG de Airflow (`ecommerce_pipeline.py`)
-- [ ] Tests unitarios
-- [ ] Dashboard en Metabase
+- [x] DAG de Airflow (`ecommerce_pipeline.py`)
+- [x] Tests unitarios
+- [x] Dashboard en Metabase
 - [ ] Documentación de arquitectura
 
 ---
