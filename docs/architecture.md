@@ -23,9 +23,7 @@
 - Versionado: todos usan las mismas versiones de herramientas
 
 ## Flujo de Datos
-API (Fake Store) → Python/Pandas → PostgreSQL → Metabase
-↓
-Apache Airflow
+API (Fake Store) → Python/Pandas → PostgreSQL → Metabase → Apache Airflow
 
 
 ## Esquema de Base de Datos
