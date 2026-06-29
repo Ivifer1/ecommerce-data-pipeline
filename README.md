@@ -1,6 +1,6 @@
 # E-Commerce Data Pipeline
 
-> Pipeline ETL end-to-end: extracción de API REST, transformación con Pandas, carga a PostgreSQL y orquestación con Apache Airflow en Docker. Incluye dashboard de visualización
+> Pipeline ETL end-to-end: extracción de API REST, transformación con Pandas, carga a PostgreSQL y orquestación con Apache Airflow en Docker. Incluye dashboard de visualización.
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Airflow](https://img.shields.io/badge/Airflow-2.7+-green.svg)
